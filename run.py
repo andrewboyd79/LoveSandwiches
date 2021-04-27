@@ -30,14 +30,15 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('love_sandwiches')
 
-"""
-Creates variables used in code
-sales uses the worksheet methos of the sheet to call the sales
-worksheet
-data uses gspread method get_all_values method to get all data from 
-sales worksheet
-"""
-sales = SHEET.worksheet('sales')
-data = sales.get_all_values()
+def get_sales_data():
+    """
+    Get sales figures input from user
+    """
+    print("Please enter the sales data from the last market.") #Sets instructional text
+    print("The data should consist of six numbers each separated by a comma")
+    print("Example: 10,15,20,25,30,35\n") #'/n' creates a new line to separate the text elements
 
-print(data)
+    data_str = int(input("Enter data here:")) #Saves data input to a named variable
+    print(f'The data entered is {data_str}') #Prints the variable back to terminal
+
+get_sales_data() #Calls function
