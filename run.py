@@ -38,7 +38,23 @@ def get_sales_data():
     print("The data should consist of six numbers each separated by a comma")
     print("Example: 10,15,20,25,30,35\n") #'/n' creates a new line to separate the text elements
 
-    data_str = int(input("Enter data here:")) #Saves data input to a named variable
-    print(f'The data entered is {data_str}') #Prints the variable back to terminal
+    data_str = (input("Enter data here:")) #Saves data input to a named variable
+    sales_data = data_str.split(",") #Splits data at commas
+    validate_data(sales_data) #calls the function validate_data passing it sales_data var
+    
+
+def validate_data(values):
+    """
+    Inside the try, converts all string values to integers
+    Raises a ValueError if strings cannot be converted to int 
+    i.e text entries or if there aren't exactly 6 values
+    """
+    try:
+        if len(values) != 6: #if lenth of string is not 6 raise ValueError prints length
+            raise ValueError(f'Exactly 6 values are required: you only provided {len(values)}')
+
+    except  ValueError as e: #if another error (not ValueError) set it as var e
+        print(f'Invalid data: {e}, please try again.') #print the error to terminal
+    
 
 get_sales_data() #Calls function
