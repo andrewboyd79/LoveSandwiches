@@ -40,7 +40,7 @@ def get_sales_data():
 
     data_str = (input("Enter data here:")) #Saves data input to a named variable
     sales_data = data_str.split(",") #Splits data at commas
-    validate_data(sales_data) #calls the function validate_data passing it sales_data var
+    validate_data(sales_data) #calls the function validate_data passing in sales_data argument
     
 
 def validate_data(values):
@@ -50,6 +50,7 @@ def validate_data(values):
     i.e text entries or if there aren't exactly 6 values
     """
     try:
+        [int(value) for value in values] #list comprehension looping through values
         if len(values) != 6: #if lenth of string is not 6 raise ValueError prints length
             raise ValueError(f'Exactly 6 values are required: you only provided {len(values)}')
 
@@ -57,4 +58,4 @@ def validate_data(values):
         print(f'Invalid data: {e}, please try again.') #print the error to terminal
     
 
-get_sales_data() #Calls function
+get_sales_data() #Calls function get_sales_data
