@@ -44,10 +44,10 @@ def get_sales_data():
         
 
         if validate_data(sales_data): #calls the function validate_data passes sales_data
-            print('Data is valid!') #runs only if True received from validate_data
+            print('Data is valid!\n') #runs only if True received from validate_data
             break #while loop then stopped
     
-    return sales_data
+    return sales_data #returns the entered user data from the function
 
 def validate_data(values):
     """
@@ -66,4 +66,16 @@ def validate_data(values):
     
     return True #exits lopp to reenter data - no error on data entry
 
-data = get_sales_data() #Calls function get_sales_data
+def update_sales_worksheet(data):
+    """
+    Update sales worksheet, add new row with list data provided.
+    """
+    print("Updating sales worksheet...\n")
+    sales_worksheet = SHEET.worksheet('sales') #access sales worksheet
+    sales_worksheet.append_row(data) #adds new row to end of sheet with user sales data
+    print("Sales worksheet updated successfully!\n")
+
+
+data = get_sales_data() #var variable to store data returned by user
+sales_data = [int(num) for num in data] #list comprehenstion converting num in data var to int
+update_sales_worksheet(sales_data) #calls function update_sales and passes in the sales_data
